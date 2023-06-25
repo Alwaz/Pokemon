@@ -1,10 +1,13 @@
 import './App.css'
+import HomePage from './pages/HomePage'
+import PokemonPage from './pages/PokemonPage'
 
 function App() {
   return (
 
-    <div className='text-6xl'>
-      Hello
+    <div >
+      <HomePage />
+      <PokemonPage />
     </div>
 
   )
