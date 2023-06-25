@@ -12,8 +12,6 @@ export const getPokemonDetails = async (id: string) => {
 };
 
 export const searchPokemons = async (searchTerm) => {
-  const response = await axios.get(
-    `${BASE_URL}/pokemon?limit=10&search=${searchTerm}`
-  );
+  const response = await axios.get(`${BASE_URL}/pokemon/${searchTerm}`);
   return response.data;
 };

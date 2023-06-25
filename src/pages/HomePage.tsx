@@ -5,6 +5,8 @@ import PokemonCard from '../components/PokemonCard';
 
 const HomePage: React.FC = () => {
     const [pokemons, setPokemons] = useState<any[] | never[]>([]);
+    const [pokemonName, setPokemonName] = useState<string>("")
+
 
 
     const getAllPokemons = async () => {
@@ -28,12 +30,16 @@ const HomePage: React.FC = () => {
     }, []);
 
 
+    const handleSearchPokemon = (pokemonName: string) => {
+        setPokemonName(pokemonName);
+    };
+
 
     const handleSearch = async (searchTerm) => {
         console.log('search', searchTerm)
         const response = await searchPokemons(searchTerm);
-        console.log('search response', response?.results)
-        setPokemons(response.results);
+        setPokemons([response]);
+        // setPokemons(response.results);
         // setTotalPages(1); // Reset pagination for search results
     };
 
@@ -43,15 +49,20 @@ const HomePage: React.FC = () => {
                 <h1 className='text-3xl text-white py-2'>Pokidex</h1>
             </div>
             <div className="flex flex-col">
-                <SearchBar handleSearch={handleSearch} />
-                {pokemons.length > 0 && pokemons.map((pokemon, index) => (
-                    <PokemonCard
-                        id={pokemon?.id}
-                        name={pokemon?.name}
-                        image={pokemon?.sprites?.other?.dream_world?.front_default}
-                        type={pokemon?.types[0].type.name} key={index}
-                    />
-                ))}
+                <SearchBar handleSearchPokemon={handleSearchPokemon} handleSearch={() => handleSearch(pokemonName)} />
+                {/* TODO: these should be in grid */}
+                <div className='flex flex-col'>
+                    {pokemons && pokemons?.length > 0 && pokemons?.map((pokemon, index) => (
+                        <PokemonCard
+                            id={pokemon?.id}
+                            name={pokemon?.name}
+                            image={pokemon?.sprites?.other?.dream_world?.front_default}
+                            type={pokemon && pokemon?.types[0] && pokemon?.types[0]?.type?.name} key={index}
+                        />
+                    ))}
+                </div>
+
+
 
             </div>
         </div>
