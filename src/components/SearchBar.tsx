@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs'
-import { searchPokemons } from '../services/api';
 
 type SearchBarProps = {
     handleSearch?: (searchTerm: any) => Promise<void>;
@@ -8,26 +7,22 @@ type SearchBarProps = {
 };
 
 const SearchBar: React.FC<SearchBarProps> = ({ handleSearch, handleSearchPokemon }) => {
-
-
-
     return (
-
-        <div className='flex'>
+        <div className="flex items-center w-96 bg-white rounded-md border border-gray-300 px-2">
             <input
-                type='text'
-                name='search'
+                type="text"
+                name="search"
+                autoFocus
                 onChange={(e) => handleSearchPokemon(e.target.value)}
-                placeholder='Search Pokemons...'
-                className='px-3 py-2 font-light placeholder-gray-400 text-black rounded-md border-none ring-2 ring-gray-300 focus:bg-white border-transparent focus:border-blue-400'
+                placeholder="Search Pokemons..."
+                className=" flex-grow py-2 px-3 rounded-md focus:outline-none focus:shadow-outline"
             />
-            <div onClick={handleSearch}>
-                <BsSearch />
+            <div onClick={handleSearch} className="ml-2 w-2 bg-slate-200 h-8 flex flex-grow justify-center items-center cursor-pointer rounded-full">
+                <BsSearch className="text-gray-600" />
             </div>
-
         </div>
-
     );
-}
+};
+
 
 export default SearchBar;

@@ -8,7 +8,7 @@ export const getPokemons = async (offset: number, limit: number) => {
   return response.data;
 };
 
-export const getPokemonDetails = async (id: string) => {
+export const getPokemonDetails = async (id: string | undefined) => {
   const response = await axios.get(`${BASE_URL}/pokemon/${id}`);
   return response.data;
 };

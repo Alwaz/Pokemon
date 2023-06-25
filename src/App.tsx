@@ -1,14 +1,15 @@
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import PokemonPage from './pages/PokemonPage'
+import PokemonDetails from './pages/PokemonDetails'
 
 function App() {
   return (
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path="/pokemon/:name" element={<PokemonDetails />} />
+    </Routes>
 
-    <div >
-      <HomePage />
-      <PokemonPage />
-    </div>
 
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type PokemonCardProps = {
     id: number;
@@ -10,16 +11,26 @@ type PokemonCardProps = {
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, type, key, }) => {
     return (
-        <div className="flex flex-col items-center justify-center p-6 my-1 border border-gray-200 rounded w-40 text-center shadow-sm">
-            <div className='rounded-lg p-1 bg-white bg-opacity-30'>
-                <small>#0{id}</small>
+        <Link to={`/pokemon/${name}`} >
+            <div className="bg-slate-300 rounded-lg shadow-xl">
+                <div className='rounded-lg p-1 flex  flex-col items-center bg-white bg-opacity-30'>
+                    <small>#0{id}</small>
+                </div>
+                <div className='flex justify-center flex-col items-center'>
+                    <div>
+                        <img src={image} alt={name} loading='lazy' className='object-contain h-48 w-96' />
+                    </div>
+
+                    <div className='flex flex-col justify-center flex-col items-center'>
+                        <h3 className='text-xl font-semibold'>{name}</h3>
+                        <small className='text-base pb-4'>{type}</small>
+                    </div>
+                </div>
+
             </div>
-            <img src={image} alt={name} />
-            <div className='flex flex-col w-full'>
-                <h3>{name}</h3>
-                <small>{type}</small>
-            </div>
-        </div>
+        </Link>
+
+
     )
 }
 
