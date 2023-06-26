@@ -38,7 +38,6 @@ const HomePage: React.FC = () => {
         if (searchTerm) {
             response = await searchPokemons(searchTerm);
             setPokemons([response]);
-
         } else {
             await getAllPokemons();
         }
@@ -49,21 +48,17 @@ const HomePage: React.FC = () => {
     return (
         <div className='flex flex-col'>
             {/* Header */}
-
             <div className="grid gap-4 p-4 bg-indigo-500 rounded-b-3xl">
-                <div className='container mx-auto '>
-                    <div className="hidden items-center justify-between md:flex md:w-full">
-                        <div className="flex justify-start w-1/2 ">
-                            <h1 className='text-3xl text-white'>Pokidex</h1>
-                        </div>
-                        <div className="flex justify-end w-1/2">
+                <div className='container mx-auto'>
+                    <div className="flex flex-col items-center md:flex-row md:justify-between">
+                        <h1 className='text-3xl text-white mb-4 md:mb-0 md:text-center'>Pokédex</h1>
+                        <div className="w-full md:w-auto">
                             <SearchBar handleSearchPokemon={handleSearchPokemon} handleSearch={() => handleSearch(pokemonName)} />
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
 
             <div className="grid p-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-5 bg-slate-100">
                 {pokemons && pokemons?.length > 0 && pokemons?.map((pokemon, index) => (
@@ -76,10 +71,14 @@ const HomePage: React.FC = () => {
                     />
                 ))}
             </div>
+
             {/* Pagination */}
-            <button onClick={() => { setOffset(offset + limit) }}>More</button>
-
-
+            <button
+                className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none focus:bg-blue-600"
+                onClick={() => { setOffset(offset + limit) }}
+            >
+                Load More
+            </button>
         </div>
     );
 }
