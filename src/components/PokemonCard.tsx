@@ -6,10 +6,9 @@ type PokemonCardProps = {
     name: string;
     image: string;
     type: string;
-    key: string | number;
 };
 
-const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, type, key, }) => {
+const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, type, }) => {
     return (
         <Link to={`/pokemon/${name}`} >
             <div className="bg-slate-300 rounded-lg shadow-xl">
